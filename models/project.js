@@ -6,4 +6,8 @@ const projectSchema = new mongoose.Schema({
   isActive: { type: Boolean, default: true },
 });
 
+projectSchema.statics.ActiveProjects = function (callback) {
+  this.find({ isActive: "false" }, callback);
+};
+
 module.exports = mongoose.model("Project", projectSchema);
